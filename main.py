@@ -109,6 +109,7 @@ while True:
         protocolo = str(len(list_manifestacoes) + 1)
         manifestacao = protocolo + '#' + nome + '#' + tipos_manifestacoes[tipo - 1] + '#' + descricao
         list_manifestacoes.append(manifestacao)
+        print('Seu protocolo é {}'.format(protocolo))
 
     # Listar Manifestações
     if opcao == 1:
