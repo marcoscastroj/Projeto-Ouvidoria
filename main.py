@@ -65,7 +65,7 @@ def opcao_4():
 def opcao_6():
     for manifestacao in list_manifestacoes:
         mani_quebrada = manifestacao.split('#')
-        proto = input('Digite o seu protocolo: ')
+        proto = str(input('Digite o seu protocolo: '))
         if mani_quebrada[0] == proto:
             print('Protocolo: {}'.format(mani_quebrada[0]))
             print('Nome: {}'.format(mani_quebrada[1]))
