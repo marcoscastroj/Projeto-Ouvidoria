@@ -24,7 +24,6 @@ def opcao_2():
         if mani_quebrada[2] == 'Sugestão':
             print('Protocolo: {}'.format(mani_quebrada[0]))
             print('Nome: {}'.format(mani_quebrada[1]))
-            print('Tipo: {}'.format(mani_quebrada[2]))
             print('Descrição: {}'.format(mani_quebrada[3]))
             print('')
         elif mani_quebrada[2] != 'Sugestão':
@@ -39,7 +38,6 @@ def opcao_3():
         if mani_quebrada[2] == 'Reclamação':
             print('Protocolo: {}'.format(mani_quebrada[0]))
             print('Nome: {}'.format(mani_quebrada[1]))
-            print('Tipo: {}'.format(mani_quebrada[2]))
             print('Descrição: {}'.format(mani_quebrada[3]))
             print('')
         elif mani_quebrada[2] != 'Reclamação':
@@ -54,7 +52,6 @@ def opcao_4():
         if mani_quebrada[2] == 'Elogio':
             print('Protocolo: {}'.format(mani_quebrada[0]))
             print('Nome: {}'.format(mani_quebrada[1]))
-            print('Tipo: {}'.format(mani_quebrada[2]))
             print('Descrição: {}'.format(mani_quebrada[3]))
             print('')
         elif mani_quebrada[2] != 'Elogio':
