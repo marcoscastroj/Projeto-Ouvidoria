@@ -104,7 +104,7 @@ while True:
             print(i + 1, ')', tipos_manifestacoes[i])
         bool = True
         while bool:
-            tipo = input('Digite o tipo da sua manifestação (1 - reclamação, 2 - sugestão ou 3 - elogio): ')
+            tipo = input('Digite o tipo da sua manifestação: ')
             if tipo in '123':
                 tipo = int(tipo)
             else:
