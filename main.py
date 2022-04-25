@@ -83,7 +83,12 @@ while True:
     5) Enviar uma manifestação (criar uma nova)
     6) Pesquisar protocolo por número (ID)
     7) Sair''')
-    opcao = int(input('Digite uma opção: '))
+    opcao = input('Digite a opção desejada: ')
+    if opcao in '1234567':
+        opcao = int(opcao)
+    else:
+        print('* ENTRADA INVÁLIDA *  Por favor digite uma opção válida (de 1 a 7) ')
+        continue
 
     # Opção Para Finalizar o Programa
     if opcao == 7:
@@ -101,7 +106,19 @@ while True:
         quant_tipos = len(tipos_manifestacoes)
         for i in range(quant_tipos):
             print(i + 1, ')', tipos_manifestacoes[i])
-        tipo = int(input('Digite o Tipo de Manifestação: '))
+        bool = True
+        while bool:
+            tipo = input('Digite o tipo da sua manifestação (1 - reclamação, 2 - sugestão ou 3 - elogio): ')
+            if tipo in '123':
+                tipo = int(tipo)
+            else:
+                print('* ENTRADA INVÁLIDA *  Por favor digite uma opção válida (1, 2 ou 3) ')
+                continue
+
+            if tipo >= 1 and tipo <= 3:
+                bool = False
+            else:
+                print('* ENTRADA INVÁLIDA *  Por favor digite uma opção válida (1, 2 ou 3) ')
         descricao = input('Digite a Descrição: ')
         protocolo = str(len(list_manifestacoes) + 1)
         manifestacao = protocolo + '#' + nome + '#' + tipos_manifestacoes[tipo - 1] + '#' + descricao
