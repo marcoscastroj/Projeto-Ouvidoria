@@ -1,4 +1,4 @@
-# Programa de ouvidoria da faculdade ABC
+# Programa de ouvidoria da faculdade ABC por Marcos Aurelio E Leonardo Cunha
 list_manifestacoes = []
 tipos_manifestacoes = ['Reclamação', 'Sugestão', 'Elogio']
 opcao = 0
