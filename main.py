@@ -95,10 +95,6 @@ while True:
         print('Fim do Programa!')
         break
 
-    # Opção Inválida
-    if opcao < 1 or opcao > 7:
-        print('Digite uma opção Válida!')
-
     # Enviar uma Manifestação
     if opcao == 5:
         print('Digite a nova manifestação:')
