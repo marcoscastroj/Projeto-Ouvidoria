@@ -145,7 +145,7 @@ def opcao_6():
             print('Aqui esta o protocolo: ')
             print()
             cursor = connection.cursor()
-            consulta_sql = f'SELECT * FROM manifestacao where {pesquisa_protocolo} '
+            consulta_sql = f'SELECT * FROM manifestacao where id = {pesquisa_protocolo} '
             cursor.execute(consulta_sql)
             manifestacoes = cursor.fetchall()
             for manifestacao in manifestacoes:
