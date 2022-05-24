@@ -8,73 +8,59 @@ connection = mysql.connector.Connect(
 )
 
 
-class Manifestacao:
-    nome = ''
-    tipo = 0
-    descricao = ''
-    protocolo = 0
+class Manifestation:
+    name = ''
+    type = 0
+    description = ''
 
 
-lista_manifestacoes = []
-lista_tipos = ['Reclamação', 'Sugestao', 'Elogio']
-lista_sugestoes = []
-lista_reclamacoes = []
-lista_elogio = []
+manifestationList = []
+typesList = ['Complaint', 'Suggestion', 'Praise']
 
 
-def opcao_5():
-    print('Digite a nova manifestação:')
-    name = input('Digite seu nome: ')
-    quantidade_tipos = len(lista_tipos)
-    for i in range(quantidade_tipos):
-        print(i + 1, ')', lista_tipos[i])
+def createManifestation():
+    print('Enter the new manifestation:')
+    name = input('Type your name: ')
+    amountTypes = len(typesList)
+    for i in range(amountTypes):
+        print(i + 1, ')', typesList[i])
     while True:
         try:
-            type = int(input('Digite o numero do tipo: '))
+            type = int(input('Enter the type number: '))
             if type != 1 and type != 2 and type != 3:
-                type = int(input('Digite um numero valido referente ao tipo: '))
+                type = int(input('Enter a valid number for the type: '))
         except(ValueError, TypeError):
-            print('Digite uma opção valida! ')
+            print('Please enter a valid option! ')
             continue
         else:
-            type = lista_tipos[type - 1]
-            print('Tipo registrado')
+            type = typesList[type - 1]
+            print('Registered type')
             break
 
-    descricao = input('Digite a Descrição: ')
+    description = input('Enter Description: ')
 
-    nova_manifestacao = Manifestacao()
-    nova_manifestacao.nome = name
-    nova_manifestacao.tipo = type
-    nova_manifestacao.descricao = descricao
+    newManifestation = Manifestation()
+    newManifestation.name = name
+    newManifestation.type = type
+    newManifestation.description = description
 
-    lista_manifestacoes.append(nova_manifestacao)
+    manifestationList.append(newManifestation)
 
     cursor = connection.cursor()
 
-    command = f'''INSERT INTO manifestacao (nome, tipo, descricao) VALUES ("{name}","{type}","{descricao}")'''
+    command = f'''INSERT INTO manifestacao (nome, tipo, descricao) VALUES ("{name}","{type}","{description}")'''
     cursor.execute(command)
     connection.commit()
     consulta_sql = 'SELECT * FROM manifestacao'
     cursor.execute(consulta_sql)
     manifestacoes = cursor.fetchall()
     for manifestacao in manifestacoes:
-        if descricao == manifestacao[3]:
-            print(f'seu protocolo é {manifestacao[0]}')
+        if description == manifestacao[3]:
+            print(f'Your protocol is: {manifestacao[0]}')
 
 
-
-    for manifestacao in lista_manifestacoes:
-        if manifestacao.tipo == 'Reclamação':
-            lista_reclamacoes.append(nova_manifestacao)
-        elif manifestacao.tipo == 'Elogio':
-            lista_elogio.append(nova_manifestacao)
-        elif manifestacao.tipo == 'Sugestao':
-            lista_sugestoes.append(nova_manifestacao)
-
-
-def opcao_1():
-    print('Lista de manifestações:')
+def listDemonstrations():
+    print('List of demonstrations:')
     print()
     cursor = connection.cursor()
     consulta_sql = 'SELECT * FROM manifestacao'
@@ -82,77 +68,77 @@ def opcao_1():
     manifestacoes = cursor.fetchall()
 
     for manifestacao in manifestacoes:
-        print(f'Nome: {manifestacao[1]}')
-        print(f'tipo: {manifestacao[2]}')
-        print(f'descrição: {manifestacao[3]}')
-        print(f'protocolo: {manifestacao[0]}')
+        print(f'Name: {manifestacao[1]}')
+        print(f'type: {manifestacao[2]}')
+        print(f'description: {manifestacao[3]}')
+        print(f'protocol: {manifestacao[0]}')
         print()
 
 
-def opcao_2():
-    print('Lista de Sugestões:')
+def listSuggestions():
+    print('Suggestions list:')
     print()
     cursor = connection.cursor()
     consulta_sql = 'SELECT * FROM manifestacao'
     cursor.execute(consulta_sql)
     manifestacoes = cursor.fetchall()
     for manifestacao in manifestacoes:
-        if manifestacao[2] == 'Sugestao':
-            print(f'Nome: {manifestacao[1]}')
-            print(f'descrição: {manifestacao[3]}')
-            print(f'protocolo: {manifestacao[0]}')
+        if manifestacao[2] == 'Suggestion':
+            print(f'Name {manifestacao[1]}')
+            print(f'Description: {manifestacao[3]}')
+            print(f'protocol: {manifestacao[0]}')
             print()
 
 
-def opcao_3():
-    print('Lista de Reclamações:')
+def listComplaints():
+    print('List of Complaints:')
     print()
     cursor = connection.cursor()
     consulta_sql = 'SELECT * FROM manifestacao'
     cursor.execute(consulta_sql)
     manifestacoes = cursor.fetchall()
     for manifestacao in manifestacoes:
-        if manifestacao[2] == 'Reclamação':
-            print(f'Nome: {manifestacao[1]}')
-            print(f'descrição: {manifestacao[3]}')
-            print(f'protocolo: {manifestacao[0]}')
+        if manifestacao[2] == 'Complaint':
+            print(f'Name {manifestacao[1]}')
+            print(f'Description: {manifestacao[3]}')
+            print(f'protocol: {manifestacao[0]}')
             print()
 
 
-def opcao_4():
-    print('Lista de elogios:')
+def listPraise():
+    print('Praise list:')
     print()
     cursor = connection.cursor()
     consulta_sql = 'SELECT * FROM manifestacao'
     cursor.execute(consulta_sql)
     manifestacoes = cursor.fetchall()
     for manifestacao in manifestacoes:
-        if manifestacao[2] == 'Elogio':
-            print(f'Nome: {manifestacao[1]}')
-            print(f'descrição: {manifestacao[3]}')
-            print(f'protocolo: {manifestacao[0]}')
+        if manifestacao[2] == 'Praise':
+            print(f'Name {manifestacao[1]}')
+            print(f'Description: {manifestacao[3]}')
+            print(f'protocol: {manifestacao[0]}')
             print()
 
 
-def opcao_6():
+def searchProtocol():
     while True:
         try:
-            pesquisa_protocolo = int(input('Digite o seu protocolo: '))
+            pesquisa_protocolo = int(input('Enter your protocol: '))
         except(ValueError, TypeError):
-            print('Digite um protocolo valido! ')
+            print('Enter a valid protocol! ')
             continue
         else:
-            print('Aqui esta o protocolo: ')
+            print('Here is the protocol: ')
             print()
             cursor = connection.cursor()
             consulta_sql = f'SELECT * FROM manifestacao where id = {pesquisa_protocolo} '
             cursor.execute(consulta_sql)
             manifestacoes = cursor.fetchall()
             for manifestacao in manifestacoes:
-                print(f'Nome: {manifestacao[1]}')
-                print(f'tipo: {manifestacao[2]}')
-                print(f'descrição: {manifestacao[3]}')
-                print(f'protocolo: {manifestacao[0]}')
+                print(f'Name: {manifestacao[1]}')
+                print(f'Type: {manifestacao[2]}')
+                print(f'Description: {manifestacao[3]}')
+                print(f'Protocol: {manifestacao[0]}')
                 print()
                 break
             break
